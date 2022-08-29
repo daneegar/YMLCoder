@@ -3,26 +3,31 @@
 
 import PackageDescription
 
+
+let libraryName = "YMLCoder"
+let libraryNameTests = libraryName.appending("Tests")
+let target = Target.Dependency(stringLiteral: libraryName)
+let testTarget = Target.Dependency(stringLiteral: libraryNameTests)
+
 let package = Package(
-    name: "RetailCRM+MoySklad+Tilda.Plugin",
+    name: libraryName,
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "RetailCRM+MoySklad+Tilda.Plugin",
-            targets: ["RetailCRM+MoySklad+Tilda.Plugin"]),
+            name: libraryName,
+            targets: [libraryName]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/daneegar/XMLCoder", .upToNextMajor(from: "0.14.1"))
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "RetailCRM+MoySklad+Tilda.Plugin",
-            dependencies: []),
+            name: libraryName,
+            dependencies: [
+                .byNameItem(name: "XMLCoder", condition: nil)
+            ]
+        ),
         .testTarget(
-            name: "RetailCRM+MoySklad+Tilda.PluginTests",
-            dependencies: ["RetailCRM+MoySklad+Tilda.Plugin"]),
+            name: libraryNameTests,
+            dependencies: [target]),
     ]
 )

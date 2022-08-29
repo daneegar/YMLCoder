@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "xmlcoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/daneegar/XMLCoder",
+      "state" : {
+        "revision" : "cd8d88dbb1a039751fa9c2935314e6a4d433ca49",
+        "version" : "0.14.1"
+      }
+    }
+  ],
+  "version" : 2
+}
