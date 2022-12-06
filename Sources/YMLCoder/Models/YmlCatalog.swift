@@ -159,7 +159,7 @@ public struct Offer: Codable, DynamicNodeDecoding, DynamicNodeEncoding {
     public let description: String
     public let picture: String
     public let url: String
-    public let count: Int
+    public let count: Int?
     public let price: Double
     public let currencyId: String
     public let categoryId: String
@@ -204,7 +204,7 @@ public struct Offer: Codable, DynamicNodeDecoding, DynamicNodeEncoding {
         self.description = try container.decode(String.self, forKey: .description)
         self.picture = try container.decode(String.self, forKey: .picture)
         self.url = try container.decode(String.self, forKey: .url)
-        self.count = try container.decode(Int.self, forKey: .count)
+        self.count = try container.decodeIfPresent(Int.self, forKey: .count)
         self.price = try container.decode(Double.self, forKey: .price)
         self.currencyId = try container.decode(String.self, forKey: .currencyId)
         self.categoryId = try container.decode(String.self, forKey: .categoryId)
@@ -220,7 +220,7 @@ public struct Offer: Codable, DynamicNodeDecoding, DynamicNodeEncoding {
         try container.encode(description, forKey: .description)
         try container.encode(picture, forKey: .picture)
         try container.encode(url, forKey: .url)
-        try container.encode(count, forKey: .count)
+        try container.encodeIfPresent(count, forKey: .count)
         try container.encode(price, forKey: .price)
         try container.encode(currencyId, forKey: .currencyId)
         try container.encode(categoryId, forKey: .categoryId)
